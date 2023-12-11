@@ -16,7 +16,7 @@ class MainNavigationScreen extends StatefulWidget {
 }
 
 class _MainNavigationScreenState extends State<MainNavigationScreen> {
-  int _selectedIndex = 4;
+  int _selectedIndex = 0;
 
   Future<void> _onTap(int index) async {
     if (index == 2) {
@@ -84,45 +84,47 @@ class _MainNavigationScreenState extends State<MainNavigationScreen> {
           ),
         ],
       ),
-      bottomNavigationBar: BottomAppBar(
-        color: Colors.white,
-        elevation: 0,
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            NavTab(
-              isSelected: _selectedIndex == 0,
-              icon: FontAwesomeIcons.house,
-              selectedIcon: FontAwesomeIcons.house,
-              onTap: () => _onTap(0),
-            ),
-            NavTab(
-              isSelected: _selectedIndex == 1,
-              icon: FontAwesomeIcons.magnifyingGlass,
-              selectedIcon: FontAwesomeIcons.magnifyingGlass,
-              onTap: () => _onTap(1),
-            ),
-            NavTab(
-              isSelected: _selectedIndex == 2,
-              icon: FontAwesomeIcons.penToSquare,
-              selectedIcon: FontAwesomeIcons.penToSquare,
-              onTap: () => _onTap(2),
-            ),
-            NavTab(
-              isSelected: _selectedIndex == 3,
-              icon: FontAwesomeIcons.heart,
-              selectedIcon: FontAwesomeIcons.solidHeart,
-              onTap: () => _onTap(3),
-            ),
-            NavTab(
-              isSelected: _selectedIndex == 4,
-              icon: FontAwesomeIcons.user,
-              selectedIcon: FontAwesomeIcons.userLarge,
-              onTap: () => _onTap(4),
-            ),
-          ],
-        ),
-      ),
+      bottomNavigationBar: false
+          ? BottomAppBar(
+              color: Colors.white,
+              elevation: 0,
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  NavTab(
+                    isSelected: _selectedIndex == 0,
+                    icon: FontAwesomeIcons.house,
+                    selectedIcon: FontAwesomeIcons.house,
+                    onTap: () => _onTap(0),
+                  ),
+                  NavTab(
+                    isSelected: _selectedIndex == 1,
+                    icon: FontAwesomeIcons.magnifyingGlass,
+                    selectedIcon: FontAwesomeIcons.magnifyingGlass,
+                    onTap: () => _onTap(1),
+                  ),
+                  NavTab(
+                    isSelected: _selectedIndex == 2,
+                    icon: FontAwesomeIcons.penToSquare,
+                    selectedIcon: FontAwesomeIcons.penToSquare,
+                    onTap: () => _onTap(2),
+                  ),
+                  NavTab(
+                    isSelected: _selectedIndex == 3,
+                    icon: FontAwesomeIcons.heart,
+                    selectedIcon: FontAwesomeIcons.solidHeart,
+                    onTap: () => _onTap(3),
+                  ),
+                  NavTab(
+                    isSelected: _selectedIndex == 4,
+                    icon: FontAwesomeIcons.user,
+                    selectedIcon: FontAwesomeIcons.userLarge,
+                    onTap: () => _onTap(4),
+                  ),
+                ],
+              ),
+            )
+          : null,
     );
   }
 }
