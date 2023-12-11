@@ -1,6 +1,6 @@
 name: Build and deploy flutter web
 
-On:
+on:
   push:
     branches: ["main"]
 
