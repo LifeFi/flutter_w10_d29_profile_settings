@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_w10_d29_profile_settings/features/main_navigation/main_navigation_screen.dart';
-import 'package:flutter_w10_d29_profile_settings/features/users/views/settings_screen.dart';
 
 void main() {
   runApp(const MyApp());
