@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_w10_d29_profile_settings/features/main_navigation/main_navigation_screen.dart';
+import 'package:flutter_w10_d29_profile_settings/features/users/views/settings_screen.dart';
 
 void main() {
   runApp(const MyApp());
@@ -12,12 +13,13 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      // debugShowCheckedModeBanner: false,
       theme: ThemeData(
           useMaterial3: true,
           primaryColor: const Color(0xFF4A98E9),
           scaffoldBackgroundColor: Colors.white,
           textSelectionTheme: const TextSelectionThemeData(
-            cursorColor: Color(0xFF4A98E9),
+            cursorColor: Color.fromARGB(255, 10, 12, 15),
           )),
       home: const MainNavigationScreen(),
     );

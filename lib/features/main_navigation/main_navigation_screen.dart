@@ -5,6 +5,7 @@ import 'package:flutter_w10_d29_profile_settings/features/home/views/home_screen
 import 'package:flutter_w10_d29_profile_settings/features/main_navigation/widgets/nav_tab.dart';
 import 'package:flutter_w10_d29_profile_settings/features/post/view/post_screen.dart';
 import 'package:flutter_w10_d29_profile_settings/features/search/views/search_screen.dart';
+import 'package:flutter_w10_d29_profile_settings/features/users/views/user_profile_screen.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class MainNavigationScreen extends StatefulWidget {
@@ -15,7 +16,7 @@ class MainNavigationScreen extends StatefulWidget {
 }
 
 class _MainNavigationScreenState extends State<MainNavigationScreen> {
-  int _selectedIndex = 0;
+  int _selectedIndex = 4;
 
   Future<void> _onTap(int index) async {
     if (index == 2) {
@@ -79,16 +80,7 @@ class _MainNavigationScreenState extends State<MainNavigationScreen> {
           ),
           Offstage(
             offstage: _selectedIndex != 4,
-            child: const Placeholder(
-              child: Center(
-                child: Text(
-                  "Profile",
-                  style: TextStyle(
-                    fontSize: Sizes.size28,
-                  ),
-                ),
-              ),
-            ),
+            child: const UserProfileScreen(),
           ),
         ],
       ),
