@@ -7,6 +7,7 @@ import 'package:flutter_w10_d29_profile_settings/features/users/widgets/my_feeds
 import 'package:flutter_w10_d29_profile_settings/features/users/widgets/persistant_tab_bar.dart';
 import 'package:flutter_w10_d29_profile_settings/utils.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:go_router/go_router.dart';
 
 class UserProfileScreen extends StatefulWidget {
   const UserProfileScreen({super.key});
@@ -17,11 +18,8 @@ class UserProfileScreen extends StatefulWidget {
 
 class _UserProfileScreenState extends State<UserProfileScreen> {
   _onSettingsTap() {
-    Navigator.of(context).push(
-      MaterialPageRoute(
-        builder: (context) => const SettingsScreen(),
-      ),
-    );
+    context.pushNamed(SettingsScreen.routeName);
+    // context.goNamed(SettingsScreen.routeName);
   }
 
   @override

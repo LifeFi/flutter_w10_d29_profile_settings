@@ -8,9 +8,16 @@ import 'package:flutter_w10_d29_profile_settings/features/post/view/post_screen.
 import 'package:flutter_w10_d29_profile_settings/features/search/views/search_screen.dart';
 import 'package:flutter_w10_d29_profile_settings/features/users/views/user_profile_screen.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:go_router/go_router.dart';
 
 class MainNavigationScreen extends StatefulWidget {
-  const MainNavigationScreen({super.key});
+  static const String routeName = "mainNavigation";
+  final String tab;
+
+  const MainNavigationScreen({
+    super.key,
+    this.tab = "home",
+  });
 
   @override
   State<MainNavigationScreen> createState() => _MainNavigationScreenState();
@@ -18,6 +25,14 @@ class MainNavigationScreen extends StatefulWidget {
 
 class _MainNavigationScreenState extends State<MainNavigationScreen> {
   int _selectedIndex = 0;
+
+  final List<String> _tabs = [
+    "home",
+    "search",
+    "post",
+    "activity",
+    "profile",
+  ];
 
   Future<void> _onTap(int index) async {
     if (index == 2) {
@@ -29,6 +44,7 @@ class _MainNavigationScreenState extends State<MainNavigationScreen> {
         });
       }
     } else {
+      context.go("/${_tabs[index]}");
       setState(() {
         _selectedIndex = index;
       });
@@ -37,6 +53,7 @@ class _MainNavigationScreenState extends State<MainNavigationScreen> {
 
   Future<bool> _showPostModal() async {
     final bool isPosted;
+    print("showPostModal");
     isPosted = await showModalBottomSheet(
           isScrollControlled: true,
           elevation: 0,
@@ -54,14 +71,6 @@ class _MainNavigationScreenState extends State<MainNavigationScreen> {
         false;
     return isPosted;
   }
-
-  // @override
-  // void initState() {
-  //   super.initState();
-  //   showBottomTabBar.addListener(() {
-  //     setState(() {});
-  //   });
-  // }
 
   @override
   Widget build(BuildContext context) {

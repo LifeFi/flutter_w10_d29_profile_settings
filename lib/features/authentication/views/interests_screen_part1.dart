@@ -22,6 +22,9 @@ const List<String> _interestList = [
 ];
 
 class InterestsScreenPart1 extends StatefulWidget {
+  static const String routeName = "interest";
+  static const String routeURL = "/interest";
+
   const InterestsScreenPart1({super.key});
 
   @override
@@ -37,7 +40,6 @@ class _InterestsScreenPart1State extends State<InterestsScreenPart1> {
     } else {
       _selectedInterests.add(interest);
     }
-    print(_selectedInterests);
     setState(() {});
   }
 

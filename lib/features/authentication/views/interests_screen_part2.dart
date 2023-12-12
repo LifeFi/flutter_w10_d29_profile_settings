@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_w10_d29_profile_settings/constants/gaps.dart';
 import 'package:flutter_w10_d29_profile_settings/constants/sizes.dart';
+import 'package:flutter_w10_d29_profile_settings/features/home/views/home_screen.dart';
 import 'package:flutter_w10_d29_profile_settings/features/main_navigation/main_navigation_screen.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:go_router/go_router.dart';
 
 const List<String> _musicInterestList = [
   "Rap",
@@ -56,12 +58,7 @@ class _InterestsScreenPart2State extends State<InterestsScreenPart2> {
       _selectedMusicInterests.length + _selectedEntertainmentInterests.length;
 
   _goToNext() {
-    Navigator.push(
-      context,
-      MaterialPageRoute(
-        builder: (context) => const MainNavigationScreen(),
-      ),
-    );
+    context.go("/home");
   }
 
   @override

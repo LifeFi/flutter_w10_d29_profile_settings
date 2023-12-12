@@ -2,7 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_w10_d29_profile_settings/constants/gaps.dart';
 import 'package:flutter_w10_d29_profile_settings/constants/sizes.dart';
 import 'package:flutter_w10_d29_profile_settings/features/authentication/views/interests_screen_part1.dart';
+
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:go_router/go_router.dart';
 
 class PasswordScreen extends StatefulWidget {
   const PasswordScreen({super.key});
@@ -34,11 +36,7 @@ class _PasswordScreenState extends State<PasswordScreen> {
   }
 
   _onSubmitTap() {
-    Navigator.of(context).pushAndRemoveUntil(
-        MaterialPageRoute(
-          builder: (context) => const InterestsScreenPart1(),
-        ),
-        (route) => false);
+    context.goNamed(InterestsScreenPart1.routeName);
   }
 
   @override

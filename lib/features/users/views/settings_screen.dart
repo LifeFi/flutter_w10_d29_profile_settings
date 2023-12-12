@@ -8,6 +8,9 @@ import 'package:flutter_w10_d29_profile_settings/features/users/views/privacy_sc
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class SettingsScreen extends StatefulWidget {
+  static const String routeName = "settings";
+  static const String routeURL = "/settings";
+
   const SettingsScreen({super.key});
 
   @override

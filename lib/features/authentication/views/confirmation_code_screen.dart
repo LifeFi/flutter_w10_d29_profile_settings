@@ -21,11 +21,17 @@ class _ConfirmationCodeScreenState extends State<ConfirmationCodeScreen> {
   final Map<String, String> _formData = {};
 
   _onSubmitTap() {
-    Navigator.of(context).pushAndRemoveUntil(
+    /* Navigator.of(context).pushAndRemoveUntil(
         MaterialPageRoute(
           builder: (context) => const PasswordScreen(),
         ),
-        (route) => false);
+        (route) => false); */
+    Navigator.of(context, rootNavigator: true).pushAndRemoveUntil(
+      MaterialPageRoute(
+        builder: (context) => const PasswordScreen(),
+      ),
+      (route) => false,
+    );
   }
 
   @override
