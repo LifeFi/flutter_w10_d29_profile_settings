@@ -8,6 +8,12 @@ import 'package:go_router/go_router.dart';
 
 final router = GoRouter(
   initialLocation: "/home",
+  redirect: (context, state) {
+    if (state.fullPath == "") {
+      return "/home";
+    }
+    return null;
+  },
   routes: [
     GoRoute(
       name: SignUpScreen.routeName,
