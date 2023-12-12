@@ -48,6 +48,8 @@ class _SearchScreenState extends State<SearchScreen> {
     return Scaffold(
       appBar: AppBar(
         elevation: 0,
+        backgroundColor: Colors.white,
+        surfaceTintColor: Colors.white,
         title: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
