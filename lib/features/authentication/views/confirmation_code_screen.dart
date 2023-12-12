@@ -4,6 +4,7 @@ import 'package:flutter_w10_d29_profile_settings/constants/gaps.dart';
 import 'package:flutter_w10_d29_profile_settings/constants/sizes.dart';
 import 'package:flutter_w10_d29_profile_settings/features/authentication/views/password_screen.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:go_router/go_router.dart';
 
 class ConfirmationCodeScreen extends StatefulWidget {
   final String email;
@@ -26,11 +27,10 @@ class _ConfirmationCodeScreenState extends State<ConfirmationCodeScreen> {
           builder: (context) => const PasswordScreen(),
         ),
         (route) => false); */
-    Navigator.of(context, rootNavigator: true).pushAndRemoveUntil(
+    Navigator.of(context).push(
       MaterialPageRoute(
         builder: (context) => const PasswordScreen(),
       ),
-      (route) => false,
     );
   }
 

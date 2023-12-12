@@ -1,15 +1,18 @@
 import 'dart:io';
 
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_w10_d29_profile_settings/constants/gaps.dart';
 import 'package:flutter_w10_d29_profile_settings/constants/sizes.dart';
+import 'package:flutter_w10_d29_profile_settings/features/authentication/views/sign_up_screen.dart';
 import 'package:flutter_w10_d29_profile_settings/features/users/views/privacy_screen.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:go_router/go_router.dart';
 
 class SettingsScreen extends StatefulWidget {
   static const String routeName = "settings";
-  static const String routeURL = "/settings";
+  static const String routeURL = "settings";
 
   const SettingsScreen({super.key});
 
@@ -20,6 +23,17 @@ class SettingsScreen extends StatefulWidget {
 class _SettingsScreenState extends State<SettingsScreen> {
   _onBackTap() {
     Navigator.of(context).pop();
+  }
+
+  _onPrivacyTap() {
+    context.goNamed(
+      PrivacyScreen.routeName,
+      pathParameters: {"tab": "profile"},
+    );
+  }
+
+  _onLogoutTap() {
+    context.goNamed(SignUpScreen.routeName);
   }
 
   @override
@@ -93,9 +107,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
             ),
           ),
           ListTile(
-            onTap: () => Navigator.of(context).push(MaterialPageRoute(
-              builder: (context) => const PrivacyScreen(),
-            )),
+            onTap: _onPrivacyTap,
             title: const Row(
               children: [
                 FaIcon(
@@ -176,43 +188,62 @@ class _SettingsScreenState extends State<SettingsScreen> {
               children: [
                 GestureDetector(
                   onTap: () {
-                    Platform.isIOS
-                        ? showCupertinoModalPopup(
+                    kIsWeb
+                        ? showDialog(
                             context: context,
-                            builder: (context) => CupertinoAlertDialog(
+                            builder: (context) => AlertDialog(
                               title: const Text("Log out"),
-                              content: Text(
-                                  "Are you sure? \n ( Platrofm: ${Platform.operatingSystem})"),
+                              content: const Text(
+                                  "Are you sure? \n ( Platrofm: Web)"),
                               actions: [
-                                CupertinoDialogAction(
+                                TextButton(
                                   onPressed: () => Navigator.pop(context),
                                   child: const Text("No"),
                                 ),
-                                CupertinoDialogAction(
-                                  onPressed: () => Navigator.pop(context),
+                                TextButton(
+                                  onPressed: _onLogoutTap,
                                   child: const Text("Yes"),
                                 )
                               ],
                             ),
                           )
-                        : showDialog(
-                            context: context,
-                            builder: (context) => AlertDialog(
-                              title: const Text("Log out"),
-                              content: Text(
-                                  "Are you sure? \n ( Platrofm: ${Platform.operatingSystem})"),
-                              actions: [
-                                TextButton(
-                                  onPressed: () => Navigator.pop(context),
-                                  child: const Text("No"),
+                        : Platform.isIOS
+                            ? showCupertinoModalPopup(
+                                context: context,
+                                builder: (context) => CupertinoAlertDialog(
+                                  title: const Text("Log out"),
+                                  content: Text(
+                                      "Are you sure? \n ( Platrofm: ${Platform.operatingSystem})"),
+                                  actions: [
+                                    CupertinoDialogAction(
+                                      onPressed: () => Navigator.pop(context),
+                                      child: const Text("No"),
+                                    ),
+                                    CupertinoDialogAction(
+                                      onPressed: () => Navigator.pop(context),
+                                      child: const Text("Yes"),
+                                    )
+                                  ],
                                 ),
-                                TextButton(
-                                  onPressed: () => Navigator.pop(context),
-                                  child: const Text("Yes"),
-                                )
-                              ],
-                            ),
-                          );
+                              )
+                            : showDialog(
+                                context: context,
+                                builder: (context) => AlertDialog(
+                                  title: const Text("Log out"),
+                                  content: Text(
+                                      "Are you sure? \n ( Platrofm: ${Platform.operatingSystem})"),
+                                  actions: [
+                                    TextButton(
+                                      onPressed: () => Navigator.pop(context),
+                                      child: const Text("No"),
+                                    ),
+                                    TextButton(
+                                      onPressed: _onLogoutTap,
+                                      child: const Text("Yes"),
+                                    )
+                                  ],
+                                ),
+                              );
                   },
                   child: Text(
                     "Log out",

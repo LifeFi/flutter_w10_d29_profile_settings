@@ -7,6 +7,8 @@ import 'package:flutter_w10_d29_profile_settings/constants/sizes.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class PrivacyScreen extends StatefulWidget {
+  static const String routeName = "privacy";
+  static const String routeURL = "privacy";
   const PrivacyScreen({super.key});
 
   @override

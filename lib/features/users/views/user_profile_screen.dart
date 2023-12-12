@@ -18,7 +18,10 @@ class UserProfileScreen extends StatefulWidget {
 
 class _UserProfileScreenState extends State<UserProfileScreen> {
   _onSettingsTap() {
-    context.pushNamed(SettingsScreen.routeName);
+    context.goNamed(
+      SettingsScreen.routeName,
+      pathParameters: {"tab": "profile"},
+    );
     // context.goNamed(SettingsScreen.routeName);
   }
 
