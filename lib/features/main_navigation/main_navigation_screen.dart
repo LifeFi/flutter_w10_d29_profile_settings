@@ -44,8 +44,11 @@ class _MainNavigationScreenState extends State<MainNavigationScreen> {
           builder: (context) => const PostScreen(),
           backgroundColor: Colors.white,
           clipBehavior: Clip.hardEdge,
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(Sizes.size16),
+          shape: const RoundedRectangleBorder(
+            borderRadius: BorderRadius.only(
+              topLeft: Radius.circular(Sizes.size16),
+              topRight: Radius.circular(Sizes.size16),
+            ),
           ),
         ) ??
         false;
@@ -105,10 +108,10 @@ class _MainNavigationScreenState extends State<MainNavigationScreen> {
                     ),
                     duration: const Duration(milliseconds: 300),
                     child: Container(
-                      height: Sizes.size96,
+                      height: Sizes.size80,
                       padding: const EdgeInsets.only(
-                        top: Sizes.size10,
-                        bottom: Sizes.size40,
+                        top: Sizes.size20,
+                        bottom: Sizes.size32,
                       ),
                       decoration: const BoxDecoration(
                         color: Colors.white,

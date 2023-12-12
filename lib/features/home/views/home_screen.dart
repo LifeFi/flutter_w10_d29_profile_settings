@@ -67,15 +67,20 @@ class _HomeScreenState extends State<HomeScreen> {
                   [
                     Gaps.v10,
                     for (var feed in feedsData.orderedData())
-                      Thread(
-                        name: feed["user"]["name"],
-                        avatar: feed["user"]["avatar"],
-                        isMe: feed["user"]["isMe"],
-                        createdAt: feed["createdAt"],
-                        content: feed["content"],
-                        images: feed["images"],
-                        comments: feed["comments"],
-                        likes: feed["likes"],
+                      Padding(
+                        padding: const EdgeInsets.symmetric(
+                          horizontal: Sizes.size12,
+                        ),
+                        child: Thread(
+                          name: feed["user"]["name"],
+                          avatar: feed["user"]["avatar"],
+                          isMe: feed["user"]["isMe"],
+                          createdAt: feed["createdAt"],
+                          content: feed["content"],
+                          images: feed["images"],
+                          comments: feed["comments"],
+                          likes: feed["likes"],
+                        ),
                       )
                   ],
                 ),

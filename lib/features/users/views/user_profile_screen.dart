@@ -182,15 +182,21 @@ class _UserProfileScreenState extends State<UserProfileScreen> {
                 ),
                 itemCount: myFeedsData.orderedData().length,
                 itemBuilder: (context, index) {
-                  return Thread(
-                    name: myFeedsData.orderedData()[index]["user"]["name"],
-                    avatar: myFeedsData.orderedData()[index]["user"]["avatar"],
-                    isMe: myFeedsData.orderedData()[index]["user"]["isMe"],
-                    createdAt: myFeedsData.orderedData()[index]["createdAt"],
-                    content: myFeedsData.orderedData()[index]["content"],
-                    images: myFeedsData.orderedData()[index]["images"],
-                    comments: myFeedsData.orderedData()[index]["comments"],
-                    likes: myFeedsData.orderedData()[index]["likes"],
+                  return Padding(
+                    padding: const EdgeInsets.symmetric(
+                      horizontal: Sizes.size12,
+                    ),
+                    child: Thread(
+                      name: myFeedsData.orderedData()[index]["user"]["name"],
+                      avatar: myFeedsData.orderedData()[index]["user"]
+                          ["avatar"],
+                      isMe: myFeedsData.orderedData()[index]["user"]["isMe"],
+                      createdAt: myFeedsData.orderedData()[index]["createdAt"],
+                      content: myFeedsData.orderedData()[index]["content"],
+                      images: myFeedsData.orderedData()[index]["images"],
+                      comments: myFeedsData.orderedData()[index]["comments"],
+                      likes: myFeedsData.orderedData()[index]["likes"],
+                    ),
                   );
                 },
               ),

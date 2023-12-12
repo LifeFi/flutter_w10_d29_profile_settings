@@ -15,8 +15,11 @@ class MoreModalbottomsheet extends StatelessWidget {
       builder: (context) => const ReportModalbottomsheet(),
       backgroundColor: Colors.white,
       clipBehavior: Clip.hardEdge,
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(Sizes.size16),
+      shape: const RoundedRectangleBorder(
+        borderRadius: BorderRadius.only(
+          topLeft: Radius.circular(Sizes.size16),
+          topRight: Radius.circular(Sizes.size16),
+        ),
       ),
     );
   }
