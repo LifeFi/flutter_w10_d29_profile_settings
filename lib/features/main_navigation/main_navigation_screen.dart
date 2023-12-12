@@ -91,55 +91,70 @@ class _MainNavigationScreenState extends State<MainNavigationScreen> {
             offstage: _selectedIndex != 4,
             child: const UserProfileScreen(),
           ),
+          ValueListenableBuilder(
+              valueListenable: showBottomTabBar,
+              builder: (context, value, child) {
+                return Positioned(
+                  bottom: 0,
+                  left: 0,
+                  right: 0,
+                  child: AnimatedSlide(
+                    offset: Offset(
+                      0,
+                      value ? 0 : 1.0,
+                    ),
+                    duration: const Duration(milliseconds: 300),
+                    child: Container(
+                      height: Sizes.size96,
+                      padding: const EdgeInsets.only(
+                        top: Sizes.size10,
+                        bottom: Sizes.size40,
+                      ),
+                      decoration: const BoxDecoration(
+                        color: Colors.white,
+                      ),
+                      child: Row(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          NavTab(
+                            isSelected: _selectedIndex == 0,
+                            icon: FontAwesomeIcons.house,
+                            selectedIcon: FontAwesomeIcons.house,
+                            onTap: () => _onTap(0),
+                          ),
+                          NavTab(
+                            isSelected: _selectedIndex == 1,
+                            icon: FontAwesomeIcons.magnifyingGlass,
+                            selectedIcon: FontAwesomeIcons.magnifyingGlass,
+                            onTap: () => _onTap(1),
+                          ),
+                          NavTab(
+                            isSelected: _selectedIndex == 2,
+                            icon: FontAwesomeIcons.penToSquare,
+                            selectedIcon: FontAwesomeIcons.penToSquare,
+                            onTap: () => _onTap(2),
+                          ),
+                          NavTab(
+                            isSelected: _selectedIndex == 3,
+                            icon: FontAwesomeIcons.heart,
+                            selectedIcon: FontAwesomeIcons.solidHeart,
+                            onTap: () => _onTap(3),
+                          ),
+                          NavTab(
+                            isSelected: _selectedIndex == 4,
+                            icon: FontAwesomeIcons.user,
+                            selectedIcon: FontAwesomeIcons.userLarge,
+                            onTap: () => _onTap(4),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                );
+              })
         ],
       ),
-      bottomNavigationBar: ValueListenableBuilder(
-          valueListenable: showBottomTabBar,
-          builder: (context, value, child) {
-            return value
-                ? BottomAppBar(
-                    color: Colors.white,
-                    elevation: 0,
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        NavTab(
-                          isSelected: _selectedIndex == 0,
-                          icon: FontAwesomeIcons.house,
-                          selectedIcon: FontAwesomeIcons.house,
-                          onTap: () => _onTap(0),
-                        ),
-                        NavTab(
-                          isSelected: _selectedIndex == 1,
-                          icon: FontAwesomeIcons.magnifyingGlass,
-                          selectedIcon: FontAwesomeIcons.magnifyingGlass,
-                          onTap: () => _onTap(1),
-                        ),
-                        NavTab(
-                          isSelected: _selectedIndex == 2,
-                          icon: FontAwesomeIcons.penToSquare,
-                          selectedIcon: FontAwesomeIcons.penToSquare,
-                          onTap: () => _onTap(2),
-                        ),
-                        NavTab(
-                          isSelected: _selectedIndex == 3,
-                          icon: FontAwesomeIcons.heart,
-                          selectedIcon: FontAwesomeIcons.solidHeart,
-                          onTap: () => _onTap(3),
-                        ),
-                        NavTab(
-                          isSelected: _selectedIndex == 4,
-                          icon: FontAwesomeIcons.user,
-                          selectedIcon: FontAwesomeIcons.userLarge,
-                          onTap: () => _onTap(4),
-                        ),
-                      ],
-                    ),
-                  )
-                : const SizedBox(
-                    height: 0,
-                  );
-          }),
     );
   }
 }
