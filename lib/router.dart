@@ -1,4 +1,3 @@
-import 'package:flutter_w10_d29_profile_settings/features/authentication/views/create_account_screen.dart';
 import 'package:flutter_w10_d29_profile_settings/features/authentication/views/interests_screen_part1.dart';
 import 'package:flutter_w10_d29_profile_settings/features/authentication/views/login_screen.dart';
 import 'package:flutter_w10_d29_profile_settings/features/authentication/views/sign_up_screen.dart';

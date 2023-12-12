@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
 import 'package:flutter_w10_d29_profile_settings/constants/gaps.dart';
 import 'package:flutter_w10_d29_profile_settings/constants/sizes.dart';
 import 'package:flutter_w10_d29_profile_settings/features/common/widgets/thread.dart';
+import 'package:flutter_w10_d29_profile_settings/features/main_navigation/widgets/show_bottom_tap_bar.dart';
 import 'package:flutter_w10_d29_profile_settings/features/users/views/settings_screen.dart';
 import 'package:flutter_w10_d29_profile_settings/features/users/widgets/my_feeds_darta.dart';
 import 'package:flutter_w10_d29_profile_settings/features/users/widgets/persistant_tab_bar.dart';
@@ -17,6 +19,32 @@ class UserProfileScreen extends StatefulWidget {
 }
 
 class _UserProfileScreenState extends State<UserProfileScreen> {
+  final ScrollController _scrollController = ScrollController();
+
+  _toggleShowBottomTabBar() {
+    if (_scrollController.position.userScrollDirection ==
+            ScrollDirection.reverse &&
+        showBottomTabBar.value) {
+      showBottomTabBar.value = false;
+    } else if (_scrollController.position.userScrollDirection ==
+            ScrollDirection.forward &&
+        !showBottomTabBar.value) {
+      showBottomTabBar.value = true;
+    }
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    _scrollController.addListener(_toggleShowBottomTabBar);
+  }
+
+  @override
+  void dispose() {
+    _scrollController.dispose();
+    super.dispose();
+  }
+
   _onSettingsTap() {
     context.goNamed(
       SettingsScreen.routeName,
@@ -31,6 +59,7 @@ class _UserProfileScreenState extends State<UserProfileScreen> {
       child: DefaultTabController(
         length: 2,
         child: NestedScrollView(
+          controller: _scrollController,
           headerSliverBuilder: (context, innerBoxIsScrolled) {
             return [
               SliverAppBar(

@@ -17,7 +17,6 @@ class _HomeScreenState extends State<HomeScreen> {
   final ScrollController _scrollController = ScrollController();
 
   _toggleShowBottomTabBar() {
-    print(showBottomTabBar.value);
     if (_scrollController.position.userScrollDirection ==
             ScrollDirection.reverse &&
         showBottomTabBar.value) {

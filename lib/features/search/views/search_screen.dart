@@ -1,7 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
 import 'package:flutter_w10_d29_profile_settings/constants/gaps.dart';
 import 'package:flutter_w10_d29_profile_settings/constants/sizes.dart';
+import 'package:flutter_w10_d29_profile_settings/features/main_navigation/widgets/show_bottom_tap_bar.dart';
 import 'package:flutter_w10_d29_profile_settings/features/search/widgets/search_users_data.dart';
 import 'package:flutter_w10_d29_profile_settings/utils.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -15,7 +17,33 @@ class SearchScreen extends StatefulWidget {
 
 class _SearchScreenState extends State<SearchScreen> {
   final TextEditingController _controller = TextEditingController();
+  final ScrollController _scrollController = ScrollController();
+
   final List<int> _followingList = [];
+
+  _toggleShowBottomTabBar() {
+    if (_scrollController.position.userScrollDirection ==
+            ScrollDirection.reverse &&
+        showBottomTabBar.value) {
+      showBottomTabBar.value = false;
+    } else if (_scrollController.position.userScrollDirection ==
+            ScrollDirection.forward &&
+        !showBottomTabBar.value) {
+      showBottomTabBar.value = true;
+    }
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    _scrollController.addListener(_toggleShowBottomTabBar);
+  }
+
+  @override
+  void dispose() {
+    _scrollController.dispose();
+    super.dispose();
+  }
 
   void _onFollowTap(int id) {
     if (_followingList.contains(id)) {
@@ -69,6 +97,7 @@ class _SearchScreenState extends State<SearchScreen> {
         toolbarHeight: Sizes.size96,
       ),
       body: ListView.builder(
+        controller: _scrollController,
         keyboardDismissBehavior: ScrollViewKeyboardDismissBehavior.onDrag,
         itemCount: searchUsersData.data.length,
         itemBuilder: (context, index) {
