@@ -1,29 +1,44 @@
-import 'package:faker/faker.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
 import 'package:flutter_w10_d29_profile_settings/constants/gaps.dart';
 import 'package:flutter_w10_d29_profile_settings/constants/sizes.dart';
 import 'package:flutter_w10_d29_profile_settings/features/common/widgets/thread.dart';
 import 'package:flutter_w10_d29_profile_settings/features/home/views/widgets/feeds_data.dart';
-import 'package:flutter_w10_d29_profile_settings/features/common/widgets/more_modalbottomsheet.dart';
-import 'package:flutter_w10_d29_profile_settings/utils.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:flutter_w10_d29_profile_settings/features/main_navigation/widgets/show_bottom_tap_bar.dart';
 
-class HomeScreen extends StatelessWidget {
+class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
 
-  void _onMoreTap(BuildContext context) {
-    showModalBottomSheet(
-      isScrollControlled: true,
-      showDragHandle: true,
-      elevation: 0,
-      context: context,
-      builder: (context) => const MoreModalbottomsheet(),
-      backgroundColor: Colors.white,
-      clipBehavior: Clip.hardEdge,
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(Sizes.size16),
-      ),
-    );
+  @override
+  State<HomeScreen> createState() => _HomeScreenState();
+}
+
+class _HomeScreenState extends State<HomeScreen> {
+  final ScrollController _scrollController = ScrollController();
+
+  _toggleShowBottomTabBar() {
+    print(showBottomTabBar.value);
+    if (_scrollController.position.userScrollDirection ==
+            ScrollDirection.reverse &&
+        showBottomTabBar.value) {
+      showBottomTabBar.value = false;
+    } else if (_scrollController.position.userScrollDirection ==
+            ScrollDirection.forward &&
+        !showBottomTabBar.value) {
+      showBottomTabBar.value = true;
+    }
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    _scrollController.addListener(_toggleShowBottomTabBar);
+  }
+
+  @override
+  void dispose() {
+    _scrollController.dispose();
+    super.dispose();
   }
 
   @override
@@ -34,6 +49,7 @@ class HomeScreen extends StatelessWidget {
           horizontal: Sizes.size10,
         ),
         child: CustomScrollView(
+          controller: _scrollController,
           slivers: [
             SliverAppBar(
               backgroundColor: Colors.white,
